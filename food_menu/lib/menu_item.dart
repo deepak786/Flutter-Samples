@@ -12,8 +12,9 @@ class MenuItem extends StatefulWidget {
       "https://www.motherskitchennepal.com/wp-content/uploads/2018/06/veg_icon.png";
   final String nonVegIcon =
       "https://www.motherskitchennepal.com/wp-content/uploads/2018/06/nonveg_icon.png";
+  final Function menuItemAction;
 
-  MenuItem(this.item);
+  MenuItem(this.item, {this.menuItemAction});
 
   @override
   _MenuItemState createState() => _MenuItemState();
@@ -171,6 +172,7 @@ class _MenuItemState extends State<MenuItem> {
     setState(() {
       widget.item.cartCount++;
     });
+    if (widget.menuItemAction != null) widget.menuItemAction(widget.item, true);
   }
 
   /// decrement count
@@ -179,6 +181,7 @@ class _MenuItemState extends State<MenuItem> {
       setState(() {
         widget.item.cartCount--;
       });
+      if (widget.menuItemAction != null) widget.menuItemAction(widget.item, false);
     }
   }
 

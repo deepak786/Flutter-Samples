@@ -4,6 +4,10 @@ import 'item.dart';
 import 'menu_item.dart';
 
 class MenuList extends StatefulWidget {
+  final Function menuItemAction;
+
+  MenuList({this.menuItemAction});
+
   @override
   _MenuListState createState() => _MenuListState();
 }
@@ -23,7 +27,10 @@ class _MenuListState extends State<MenuList>
     super.build(context);
     return ListView.builder(
       itemBuilder: (BuildContext context, int index) {
-        return MenuItem(data[index]);
+        return MenuItem(
+          data[index],
+          menuItemAction: widget.menuItemAction,
+        );
       },
       itemCount: data.length,
     );
